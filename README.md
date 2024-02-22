@@ -39,6 +39,46 @@ Binary search is a very efficient algorithm with a time complexity of O(log n), 
 ---
 ## Binary Search - Iterative
 
+Iterative binary search is a searching algorithm used to find the position of a target value within a sorted array or list. It works by repeatedly dividing the search interval in half until the target value is found or the search interval becomes empty. Here's a breakdown of how it works:
+
+1. **Initialize Pointers**: Begin with two pointers, `left` and `right`, representing the beginning and end of the array respectively.
+
+2. **Iterative Process**: Use a while loop to continue the search as long as the `left` pointer is less than or equal to the `right` pointer.
+
+3. **Calculate Midpoint**: Compute the midpoint of the current range by averaging the `left` and `right` pointers.
+
+4. **Check Midpoint**: Compare the element at the midpoint with the target value:
+   - If they are equal, return the index of the midpoint.
+   - If the element at the midpoint is less than the target, update the `left` pointer to search the right half of the array.
+   - If the element at the midpoint is greater than the target, update the `right` pointer to search the left half of the array.
+
+5. **Repeat**: Continue this process until the target value is found or the search interval is empty.
+
+6. **Return Result**: If the target value is found, return its index; otherwise, return -1 to indicate that the element was not found in the array.
+
+Iterative binary search is efficient with a time complexity of O(log n) because it eliminates half of the remaining elements in each iteration, making it significantly faster than linear search algorithms for large datasets.
+
+Psuedo Code
+
+```
+function IterativeBinarySearch(array, target):
+    left = 0
+    right = length(array) - 1
+    
+    while left <= right:
+        mid = left + (right - left) / 2
+        
+        if array[mid] == target:
+            return mid
+        else if array[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    return -1
+
+```
+
 1. **Define Method Signature:**
    ```csharp
    public static int IterativeBinarySearch(int[] array, int target)
@@ -94,7 +134,39 @@ This algorithm efficiently searches for a target element in a sorted array by re
 
 ## Binary Search - Recursive
 
-Certainly! Let's break down the recursive binary search function step by step:
+Recursive binary search is another approach to finding a target value within a sorted array or list. Here's a breakdown of how it works:
+
+1. **Define Base Case**: The function starts by checking if the `left` pointer is less than or equal to the `right` pointer. This serves as the base case for the recursion. If the base case is met, it means that the search interval is empty, and the function returns -1 to indicate that the target element was not found.
+
+2. **Calculate Midpoint**: If the base case is not met, the function calculates the midpoint of the current range by averaging the `left` and `right` pointers.
+
+3. **Check Midpoint**: The function then compares the element at the midpoint with the target value:
+   - If they are equal, the function returns the index of the midpoint, indicating that the target element was found.
+   - If the element at the midpoint is greater than the target, the function recursively calls itself on the left half of the array, updating the `right` pointer to `mid - 1`.
+   - If the element at the midpoint is less than the target, the function recursively calls itself on the right half of the array, updating the `left` pointer to `mid + 1`.
+
+4. **Repeat**: This process continues recursively until the base case is met or the target value is found.
+
+5. **Return Result**: If the target value is found during the recursive calls, the function returns its index; otherwise, it returns -1.
+
+Recursive binary search also has a time complexity of O(log n) because it effectively divides the search space in half with each recursive call, making it efficient for searching large datasets. However, it may consume more stack space due to recursive function calls compared to the iterative approach.
+
+```console
+function RecursiveBinarySearch(array, target, left, right):
+    if left > right:
+        return -1
+    
+    mid = left + (right - left) / 2
+    
+    if array[mid] == target:
+        return mid
+    else if array[mid] < target:
+        return RecursiveBinarySearch(array, target, mid + 1, right)
+    else:
+        return RecursiveBinarySearch(array, target, left, mid - 1)
+```
+
+
 
 ```csharp
 // Recursive binary search function
