@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GA_BinarySearch
+namespace GA_BinarySearch_JonathanReed
 {
     internal static class BinarySearch
     {
